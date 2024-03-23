@@ -2,7 +2,6 @@
 
 export async function POST(req2) {
     const req = await req2.json();
-    console.log(req);
     const { username, lang_id, stdin, code } = req;
   try {
     const response = await fetch(
