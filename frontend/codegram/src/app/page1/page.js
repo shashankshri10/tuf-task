@@ -16,10 +16,10 @@ const Page1 = () => {
   const [stdin, setStdin] = useState("");
   const [code, setCode] = useState("console.log('hello world!')");
   const [lol, setlol] = useState(langs);
-  const [isRunning,setisRunning] = useState(false);
-  const [exeRes,setexeRes] = useState();
+  const [isRunning, setisRunning] = useState(false);
+  const [exeRes, setexeRes] = useState();
   const router = useRouter;
-  const hostname = process.env.HOST_NAME || "localhost";
+  const hostname = process.env.HOST_NAME;
 
   const handleUsernameChange = (e) => setUsername(e.target.value);
   // const handleLanguageChange = (e) => setLanguage(e.target.value);
@@ -46,27 +46,24 @@ const Page1 = () => {
     }
     const lang_id = language;
     try {
-      const response = await fetch(
-        `http://${hostname}:5000/api/code-snippets/submit`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username,
-            lang_id,
-            stdin,
-            code,
-          }),
-        }
-      );
+      const response = await fetch('/api/submit', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username,
+          lang_id,
+          stdin,
+          code,
+        }),
+      });
       const data = await response.json();
       const foo = async (data) => {
         setisRunning(false);
         console.log(data);
         setexeRes(data);
-      }
+      };
       foo(data);
       // Optionally, you can handle the response and display results to the user
     } catch (error) {
@@ -176,7 +173,7 @@ const Page1 = () => {
               >
                 Submit
               </button>
-              {(isRunning && exeRes==null) && (
+              {isRunning && exeRes == null && (
                 <Blocks
                   height="80"
                   width="80"
@@ -187,7 +184,7 @@ const Page1 = () => {
                   visible={true}
                 />
               )}
-              {(!isRunning && exeRes!=null) && (
+              {!isRunning && exeRes != null && (
                 <div className="block mb-2 text-2xl font-medium text-green-900 dark:text-green bg-white">
                   {exeRes.sub_status}
                 </div>

@@ -8,7 +8,7 @@ const Page2 = () => {
   const [submissions, setSubmissions] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [sub, setsub] = useState();
-  const hostname = process.env.HOST_NAME || "localhost";
+  const hostname = process.env.HOST_NAME;
 
   const toggleModal = (submission) => {
     setsub(submission);
@@ -19,7 +19,8 @@ const Page2 = () => {
     const fetchSubmissions = async () => {
       try {
         const response = await fetch(
-          `http://${hostname}:5000/api/code-snippets/snippets`,
+          "/api/snippets",
+          { cache: "no-store" },
           {
             method: "GET",
             headers: {
