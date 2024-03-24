@@ -19,7 +19,7 @@ const Page2 = () => {
     const fetchSubmissions = async () => {
       try {
         const response = await fetch(
-          "/backend/api/code-snippets/snippets",
+          "/api/code-snippets/snippets",
           { cache: "no-store" },
           {
             method: "GET",
