@@ -23,13 +23,13 @@ Before proceeding with the installation, ensure you have Docker and Nginx instal
 2. Run the following command to build and start the project:
 
    ```
-   sudo docker-compose up --build
+   sudo docker compose up --build
    ```
 
    To run the process in the background, use:
 
    ```
-   sudo docker-compose up --build -d
+   sudo docker compose up --build -d
    ```
 
 3. Edit the Nginx configuration file:
@@ -92,6 +92,11 @@ Before proceeding with the installation, ensure you have Docker and Nginx instal
 
     ```
     sudo systemctl restart nginx
+    ```
+10. To stop the docker containers:
+
+    ```
+    sudo docker compose down 
     ```
 
 ## Deployment
