@@ -46,7 +46,7 @@ const Page1 = () => {
     }
     const lang_id = language;
     try {
-      const response = await fetch('/api/submit', {
+      const response = await fetch("/backend/api/code-snippets/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
